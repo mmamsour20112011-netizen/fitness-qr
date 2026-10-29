@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>جدول تمارين الأسبوع</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--tx:#14171c;--mu:#5d6673;--ac:#e8590c;--bd:#e3e6ea;--ic:#14171c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101215;--card:#1a1d22;--tx:#f1f3f5;--mu:#9aa3af;--ac:#ff8a3d;--bd:#2a2e35;--ic:#f1f3f5}}
+:root[data-theme="dark"]{--bg:#101215;--card:#1a1d22;--tx:#f1f3f5;--mu:#9aa3af;--ac:#ff8a3d;--bd:#2a2e35;--ic:#f1f3f5}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.6}
+header{padding:20px 16px 8px;max-width:640px;margin:auto}
+h1{margin:0;font-size:22px}
+.sub{color:var(--mu);font-size:14px;margin:4px 0 0}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 16px;max-width:640px;margin:auto}
+.tab{flex:0 0 auto;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:999px;padding:8px 14px;font:inherit;font-size:14px;cursor:pointer}
+.tab.on{background:var(--ac);border-color:var(--ac);color:#fff}
+main{max-width:640px;margin:auto;padding:0 16px 32px}
+.day{margin:4px 0 12px;font-weight:700;font-size:18px}
+.rest{background:var(--card);border:1px dashed var(--bd);border-radius:14px;padding:18px;color:var(--mu)}
+.ex{display:flex;gap:12px;background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px;margin-bottom:10px}
+.pic{flex:0 0 72px;height:72px;border-radius:12px;background:var(--bg);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pic svg{width:52px;height:52px;fill:none;stroke:var(--ic);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.pic img{width:100%;height:100%;object-fit:cover}
+.nm{font-weight:700;font-size:16px}
+.en{color:var(--mu);font-size:13px;direction:ltr;text-align:right}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 2px}
+.chip{background:var(--bg);border-radius:8px;padding:2px 8px;font-size:13px}
+.tip{color:var(--mu);font-size:13px}
+.note{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px 14px;font-size:13px;color:var(--mu);margin-top:16px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="dumbbell" viewBox="0 0 48 48"><path d="M7 18v12M12 14v20M36 14v20M41 18v12M12 24h24"/></symbol>
+<symbol id="bench" viewBox="0 0 48 48"><path d="M4 12h40M8 8v8M40 8v8M10 28h28v5H10zM14 33v8M34 33v8"/></symbol>
+<symbol id="cable" viewBox="0 0 48 48"><path d="M10 6v36M10 8h22M32 8v20M27 28h10M4 42h14"/></symbol>
+<symbol id="seat" viewBox="0 0 48 48"><path d="M12 8v32M12 40h24M12 28h16v6H12M28 14l9 4v10"/></symbol>
+<symbol id="treadmill" viewBox="0 0 48 48"><path d="M6 38h36M34 38V10M34 10h-9M20 10a3 3 0 1 0 .1 0M20 16l-5 10 9 4M20 16l7 7"/></symbol>
+<symbol id="bike" viewBox="0 0 48 48"><circle cx="13" cy="33" r="8"/><circle cx="36" cy="33" r="8"/><path d="M13 33l8-15h11l4 15M21 18l7 15M20 13h7"/></symbol>
+<symbol id="mat" viewBox="0 0 48 48"><path d="M4 36h40v4H4zM12 24a3 3 0 1 0 .1 0M16 30h16l8-7"/></symbol>
+</svg>
+
+<header>
+<h1>🏋️ جدول تمارين الأسبوع</h1>
+<p class="sub">للمبتدئين · كل يوم ٤–٥ تمارين · اضغط على اليوم لعرضه</p>
+</header>
+<nav class="tabs" id="tabs"></nav>
+<main id="main"></main>
+
+<script>
+// تقدر تضيف صورة حقيقية للجهاز: ضع img: "data:image/jpeg;base64,..." داخل أي تمرين
+var DAYS=[
+{d:"السبت",t:"صدر + ترايسبس",ex:[
+ {n:"جهاز ضغط الصدر",en:"Chest Press Machine",ic:"seat",s:"3 × 12",r:"60 ث",tip:"ضهرك لازق في الكرسي وادفع بالراحة بدون قفل كامل للكوع"},
+ {n:"ضغط دامبل مائل",en:"Incline Dumbbell Press",ic:"bench",s:"3 × 10",r:"60 ث",tip:"ابدأ بوزن خفيف جدا وانزل ببطء"},
+ {n:"جهاز الفراشة",en:"Pec Deck Fly",ic:"seat",s:"3 × 12",r:"45 ث",tip:"اضغط الصدر في النص وارجع ببطء"},
+ {n:"ترايسبس كابل",en:"Triceps Pushdown",ic:"cable",s:"3 × 12",r:"45 ث",tip:"الكوع ثابت جنب جسمك"}]},
+{d:"الأحد",t:"ضهر + بايسبس",ex:[
+ {n:"سحب أمامي",en:"Lat Pulldown",ic:"cable",s:"3 × 12",r:"60 ث",tip:"اسحب البار لحد أعلى الصدر مش ورا الرقبة"},
+ {n:"سحب أرضي",en:"Seated Cable Row",ic:"cable",s:"3 × 12",r:"60 ث",tip:"اشدّ لوح الكتف لورا وضهرك مستقيم"},
+ {n:"جهاز ضهر",en:"Machine Row",ic:"seat",s:"3 × 10",r:"60 ث",tip:"حركة بطيئة ومتحكم فيها"},
+ {n:"بايسبس دامبل",en:"Dumbbell Curl",ic:"dumbbell",s:"3 × 12",r:"45 ث",tip:"من غير ما تتأرجح بجسمك"}]},
+{d:"الاثنين",t:"رجل",ex:[
+ {n:"جهاز الضغط للرجل",en:"Leg Press",ic:"seat",s:"3 × 12",r:"90 ث",tip:"ركبك مش بتتقفل في آخر الحركة"},
+ {n:"فتح الرجل",en:"Leg Extension",ic:"seat",s:"3 × 12",r:"60 ث",tip:"ارفع ببطء وانزل ببطء"},
+ {n:"ثني الرجل",en:"Leg Curl",ic:"seat",s:"3 × 12",r:"60 ث",tip:"من غير رفع الحوض من الجهاز"},
+ {n:"سمانة",en:"Calf Raise",ic:"seat",s:"3 × 15",r:"45 ث",tip:"اطلع على أطراف الصوابع وامسك ثانية"}]},
+{d:"الثلاثاء",t:"كارديو خفيف",ex:[
+ {n:"مشي على السير",en:"Treadmill Walk",ic:"treadmill",s:"20 دقيقة",r:"-",tip:"سرعة مريحة تقدر تتكلم فيها"},
+ {n:"بطن على الأرض",en:"Crunches",ic:"mat",s:"3 × 15",r:"30 ث",tip:"ارفع كتفك بس، الرقبة مرتاحة"}]},
+{d:"الأربعاء",t:"أكتاف + بطن",ex:[
+ {n:"جهاز ضغط الكتف",en:"Shoulder Press Machine",ic:"seat",s:"3 × 12",r:"60 ث",tip:"ادفع لفوق بدون ما تقوّس ضهرك"},
+ {n:"رفرفة جانبي",en:"Lateral Raise",ic:"dumbbell",s:"3 × 12",r:"45 ث",tip:"وزن خفيف وارفع لمستوى الكتف"},
+ {n:"رفرفة خلفي",en:"Reverse Pec Deck",ic:"seat",s:"3 × 12",r:"45 ث",tip:"اسحب بالكتف مش بالإيد"},
+ {n:"بلانك",en:"Plank",ic:"mat",s:"3 × 30 ث",r:"30 ث",tip:"جسمك خط مستقيم"}]},
+{d:"الخميس",t:"فول بودي خفيف + سيكل",ex:[
+ {n:"جهاز ضغط الصدر",en:"Chest Press Machine",ic:"seat",s:"2 × 12",r:"60 ث",tip:"وزن أخف من السبت"},
+ {n:"سحب أمامي",en:"Lat Pulldown",ic:"cable",s:"2 × 12",r:"60 ث",tip:"ركز على الشكل مش الوزن"},
+ {n:"جهاز الضغط للرجل",en:"Leg Press",ic:"seat",s:"2 × 12",r:"60 ث",tip:"حركة كاملة وبطيئة"},
+ {n:"عجلة ثابتة",en:"Stationary Bike",ic:"bike",s:"15 دقيقة",r:"-",tip:"مقاومة خفيفة لحد ما تسخن"}]},
+{d:"الجمعة",rest:true,t:"راحة"}
+];
+var tabs=document.getElementById("tabs"),main=document.getElementById("main");
+function show(i){
+ var D=DAYS[i],h='<div class="day">'+D.d+' — '+D.t+'</div>';
+ if(D.rest){h+='<div class="rest">يوم راحة 😴 اشرب مية كتير وخد وقتك في الاستشفاء. ممكن مشي خفيف لو حابب.</div>';}
+ else{D.ex.forEach(function(e,k){
+  var pic=e.img?'<img src="'+e.img+'" alt="">':'<svg><use href="#'+e.ic+'"/></svg>';
+  h+='<div class="ex"><div class="pic">'+pic+'</div><div><div class="nm">'+(k+1)+'. '+e.n+'</div><div class="en">'+e.en+'</div><div class="meta"><span class="chip">'+e.s+'</span><span class="chip">راحة '+e.r+'</span></div><div class="tip">'+e.tip+'</div></div></div>';});}
+ h+='<div class="note">⚠️ سخّن ٥ دقايق قبل التمرين. لو حسيت بألم حاد وقّف واسأل المدرب. الأوزان تبدأ خفيفة وتزود تدريجيا.</div>';
+ main.innerHTML=h;
+ Array.prototype.forEach.call(tabs.children,function(b,j){b.classList.toggle("on",j===i)});
+ try{history.replaceState(null,"","#d"+i)}catch(x){}
+}
+DAYS.forEach(function(D,i){var b=document.createElement("button");b.className="tab";b.textContent=D.d;b.onclick=function(){show(i)};tabs.appendChild(b)});
+var m=/^#d(\d)$/.exec(location.hash);show(m&&DAYS[+m[1]]?+m[1]:0);
+</script>
+</body>
+</html>
